@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "react-dotnet-trips", "react-dotnet-trips.csproj", "{AA6D8C90-96A8-4F04-AA6D-613D5489346E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA6D8C90-96A8-4F04-AA6D-613D5489346E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA6D8C90-96A8-4F04-AA6D-613D5489346E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA6D8C90-96A8-4F04-AA6D-613D5489346E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA6D8C90-96A8-4F04-AA6D-613D5489346E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EC30173-3524-451B-896D-6517AEF7E02B}
+	EndGlobalSection
+EndGlobal
