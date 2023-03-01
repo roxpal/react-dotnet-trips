@@ -48,7 +48,7 @@ namespace Trips.Data
             },
             new Trip()
             {
-                Id=7,
+                Id=6,
                 Name="Munich, Germany",
                 Description="Munich is an important city in Germany, located in the heart of Bavaria. It's famous for its traditional Oktoberfest annual festival, and many nice lakes and parks...",
                 DateStarted = new DateTime(2019,01,20),

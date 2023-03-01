@@ -1,10 +1,10 @@
-import * as React from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import * as React from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Update = () => {
-    const [name, setName] = React.useState('');
-    const [description, setDescription] = React.useState('');
+    const [name, setName] = React.useState(undefined);
+    const [description, setDescription] = React.useState(undefined);
     const [dateStarted, setDateStarted] = React.useState(null);
     const [dateCompleted, setDateCompleted] = React.useState(null);
 
@@ -12,7 +12,7 @@ export const Update = () => {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        axios.get('api/Trips/SingleTrip/' + id).then(trip => {
+        axios.get("api/Trips/SingleTrip/" + id).then(trip => {
             const response = trip.data;
             setName(response.name);
             setDescription(response.description);
@@ -38,7 +38,7 @@ export const Update = () => {
     };
 
     const onUpdateCancel = () => {
-        navigate('/trips');
+        navigate("/trips");
     };
 
     const onSubmit = e => {
@@ -51,8 +51,8 @@ export const Update = () => {
             dateCompleted: dateCompleted ? new Date(dateCompleted).toISOString() : null
         };
 
-        axios.put('api/Trips/updateTrip/' + id, tripObject).then(() => {
-            navigate('/trips');
+        axios.put("api/Trips/updateTrip/" + id, tripObject).then(() => {
+            navigate("/trips");
         });
     };
 
