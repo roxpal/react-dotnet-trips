@@ -1,38 +1,19 @@
 import * as React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllTrips, selectTrips } from "../../redux/tripsSlice";
 
 axios.defaults.baseURL = "https://localhost:7114";
 
 export const Trips = () => {
-    const [trips, setTrips] = React.useState([]);
-    const [loading, setLoading] = React.useState(true);
-    const [failed, setFailed] = React.useState(false);
-    const [errorMessage, setErrorMessage] = React.useState("");
-
+    const selectedTrips = useSelector(selectTrips);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
-        populateTripsData();
-    }, [trips]);
-
-    const populateTripsData = () => {
-        axios
-            .get("/api/Trips/GetTrips")
-            .then(result => {
-                const response = result.data;
-                setTrips(response);
-                setLoading(false);
-                setFailed(false);
-                setErrorMessage("");
-            })
-            .catch(error => {
-                setTrips([]);
-                setLoading(false);
-                setFailed(true);
-                setErrorMessage("Trips could not be loaded.");
-            });
-    };
+        dispatch(getAllTrips());
+    }, []);
 
     const onTripUpdate = id => {
         navigate(`/update/${id}`);
@@ -42,7 +23,7 @@ export const Trips = () => {
         navigate(`/delete/${id}`);
     };
 
-    const renderAllTripsTable = trips => {
+    const renderAllTripsTable = tripsData => {
         return (
             <table className="table table-striped">
                 <thead>
@@ -55,7 +36,7 @@ export const Trips = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {trips.map(trip => (
+                    {tripsData.map(trip => (
                         <tr key={trip.id}>
                             <td>{trip.name}</td>
                             <td>{trip.description}</td>
@@ -78,14 +59,14 @@ export const Trips = () => {
         );
     };
 
-    const content = loading ? (
+    const content = selectedTrips.loading ? (
         <p>
             <em>Loading...</em>
         </p>
-    ) : failed ? (
+    ) : selectedTrips.hasError ? (
         <div className="text-danger">{errorMessage}</div>
     ) : (
-        renderAllTripsTable(trips)
+        renderAllTripsTable(selectedTrips.tripsData)
     );
 
     return (
