@@ -4,20 +4,29 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { Provider } from "react-redux";
+import { Auth0Provider } from "@auth0/auth0-react";
 import store from "./store/store";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
+import config from "./auth_config.json";
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
-    <Provider store={store}>
-        <BrowserRouter basename={baseUrl}>
-            <App />
-        </BrowserRouter>
-    </Provider>
+    <Auth0Provider
+        domain={config.domain}
+        clientId={config.clientId}
+        authorizationParams={{
+            redirect_uri: window.location.origin
+        }}>
+        <Provider store={store}>
+            <BrowserRouter basename={baseUrl}>
+                <App />
+            </BrowserRouter>
+        </Provider>
+    </Auth0Provider>
 );
 
 // If you want your app to work offline and load faster, you can change
